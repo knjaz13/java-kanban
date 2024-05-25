@@ -50,9 +50,6 @@ public class TaskManager {
     }
 
     public Task getSingleTask(Integer id) {
-        if (!tasks.containsKey(id)) {
-            return null;
-        }
         return tasks.get(id);
     }
 

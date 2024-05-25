@@ -16,10 +16,10 @@ public class Main {
         /*Создайте две задачи, а также эпик с двумя подзадачами и эпик с одной подзадачей.*/
         Task testTask1 = new Task("Первая", "Это первая задача", State.NEW);
         Task testTask2 = new Task("Вторая", "А это вторая задача", State.IN_PROGRESS);
-        Epic testEpic1 = new Epic("Первый", "Первый эпик с двумя", new ArrayList<>());
+        Epic testEpic1 = new Epic("Первый", "Первый эпик с двумя");
         SubTask testSub1 = new SubTask("Первая подзадача", "Тело первой подзадачи", State.NEW, 3);
         SubTask testSub2 = new SubTask("Вторая подзадача", "Это уже тело второй подзадачи", State.NEW, 3);
-        Epic testEpic2 = new Epic("Второй", "Первый-первый, я второй", new ArrayList<>());
+        Epic testEpic2 = new Epic("Второй", "Первый-первый, я второй");
         SubTask testSub3 = new SubTask("Подзадача второго эпика", "Тело подзадачи второго эпика", State.NEW, 6);
 
         manager.addTask(testTask1);

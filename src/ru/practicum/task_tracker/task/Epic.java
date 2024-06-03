@@ -4,34 +4,34 @@ import java.util.*;
 
 public class Epic extends Task {
 
-    private final List<Integer> tasksInEpic;
+    private final List<Integer> subTasksInEpic;
 
     public Epic(String name, String body) {
         super(name, body);
-        this.tasksInEpic = new ArrayList<>();
+        this.subTasksInEpic = new ArrayList<>();
     }
 
     public Epic(Integer id, String name, String body, List<Integer> tasksInEpic) {
         super(id, name, body);
-        this.tasksInEpic = tasksInEpic;
+        this.subTasksInEpic = tasksInEpic;
     }
 
-    public List<Integer> getTasksInEpic() {
-        return tasksInEpic;
+    public List<Integer> getSubTasksInEpic() {
+        return subTasksInEpic;
     }
 
-    public void setTasksInEpic(Integer subTaskId) {
-        tasksInEpic.add(subTaskId);
+    public void setSubTasksInEpic(Integer subTaskId) {
+        subTasksInEpic.add(subTaskId);
     }
 
     public void clearSubtasks() {
-        tasksInEpic.clear();
+        subTasksInEpic.clear();
     }
 
     public void deleteSingleSubtask(Integer id) {
-        for (int i = 0; i < tasksInEpic.size(); i++) {
-            if (tasksInEpic.get(i).equals(id)) {
-                tasksInEpic.remove(id);
+        for (int i = 0; i < subTasksInEpic.size(); i++) {
+            if (subTasksInEpic.get(i).equals(id)) {
+                subTasksInEpic.remove(id);
             }
         }
     }
@@ -42,7 +42,7 @@ public class Epic extends Task {
                 "id=" + super.getId() +
                 ", name='" + super.getName() + '\'' +
                 ", body='" + super.getBody() + '\'' +
-                ", state=" + super.getState() + ", tasksInEpic=" + tasksInEpic +
+                ", state=" + super.getState() + ", subTasksInEpic=" + subTasksInEpic +
                 '}';
     }
 }

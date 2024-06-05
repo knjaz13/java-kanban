@@ -1,9 +1,13 @@
 package ru.practicum.task_tracker;
 
-import ru.practicum.task_tracker.manager.InMemoryTaskManager;
 import ru.practicum.task_tracker.manager.Managers;
 import ru.practicum.task_tracker.manager.TaskManager;
 import ru.practicum.task_tracker.task.*;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import static ru.practicum.task_tracker.task.State.NEW;
 
 public class Main {
 
@@ -12,8 +16,6 @@ public class Main {
         System.out.println();
 
         TaskManager manager = Managers.getDefault();
-
-
 
         /*Создайте две задачи, а также эпик с двумя подзадачами и эпик с одной подзадачей.*/
         Task testTask1 = new Task("Первая", "Это первая задача", State.NEW);
@@ -42,8 +44,29 @@ public class Main {
         manager.getSingleTask(1);
         System.out.println(manager.getHistory());
 
+        System.out.println("Проверю, что в эпик нельзя добавить сам эпик");
+        List<Integer> testList = new ArrayList<>();
+        testList.add(1);
+        testList.add(2);
+        testList.add(testEpic2.getId());
+        testEpic2 = new Epic(testEpic2.getId(), "Второй", "Первый-первый, я второй", testList);
+        manager.updateEpic(testEpic2);
+        System.out.println(manager.getSingleEpic(testEpic2.getId()));
+        System.out.println();
+
+        System.out.println("Проверю, что что задачи с заданным id и сгенерированным id не конфликтуют внутри менеджера");
+        System.out.println(manager.getSingleTask(1));
+        Task genTask = new Task(1, "Test body", "Test description", State.NEW);
+        manager.addTask(genTask);
+        System.out.println(manager.getTasks());
+        System.out.println();
+
+        SubTask subTask = new SubTask("Тест субтаск", "Тест тело субтаски", NEW, 11);
+        manager.addSubTask(subTask);
+        manager.getSingleSubtask(1);
 
     }
+
     private static void printAllTasks(TaskManager manager) {
         System.out.println("Задачи:");
         for (Task task : manager.getTasks()) {

@@ -13,7 +13,6 @@ public class InMemoryTaskManager implements TaskManager {
     private final Map<Integer, SubTask> subTasks = new HashMap<>(); //подзадачи
     HistoryManager history = Managers.getDefaultHistory(); //пока не ясна логика, которая согласно ТЗ понадобится в будущем
 
-
     private int getNextId() { //сначала достаем, потом инкрементируем сквозной id
         return idGenerator++;
     }
@@ -142,7 +141,7 @@ public class InMemoryTaskManager implements TaskManager {
 
     @Override
     public Epic updateEpic(Epic epic) {
-        if (epic.getId() == null || !epics.containsKey(epic.getId())) {
+        if (epic.getId() == null || !epics.containsKey(epic.getId()) || epic.getSubTasksInEpic().contains(epic.getId())) {
             return null;
         }
         epics.put(epic.getId(), epic);
@@ -213,6 +212,6 @@ public class InMemoryTaskManager implements TaskManager {
 
     @Override
     public List<Task> getHistory() {
-       return history.getHistory();
+        return history.getHistory();
     }
 }

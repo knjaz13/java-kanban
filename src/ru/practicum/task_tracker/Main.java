@@ -43,6 +43,7 @@ public class Main {
         System.out.println(manager.getHistory());
         manager.getSingleTask(1);
         System.out.println(manager.getHistory());
+        System.out.println();
 
         System.out.println("Проверю, что в эпик нельзя добавить сам эпик");
         List<Integer> testList = new ArrayList<>();
